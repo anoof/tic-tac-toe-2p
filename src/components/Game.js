@@ -2,13 +2,19 @@ import React, { useState } from 'react';
 import Board from './Board';
 import { calculateWinner } from '../helpers';
 
-const styles = {
+const statusStyles = {
     width: '200px',
     margin: '20px auto',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
 };
+
+const containerStyles = {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column'
+}
 
 const Game = () => {
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -32,13 +38,13 @@ const Game = () => {
     )
 
     return (
-        <>
+        <div style={containerStyles}>
             <Board squares={board} onClick={handleClick} />
-            <div style={styles}>
+            <div style={statusStyles}>
                 <p>{winner ? 'Winner: ' + winner : 'Player ' + (xIsNext ? 'X' : 'O') + ' moves'}</p>
                 {winner ? renderMoves() : ''}
             </div>
-        </>
+        </div>
     )
 }
 export default Game;
